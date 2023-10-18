@@ -21,7 +21,9 @@ In the meantime, below is an example of what you can do with just a few lines of
 today = date.today()
 today_file = today.strftime("%Y-%m-%d")
 if os.path.isfile(today_file):
-    st.write( 'Found a stream listing file for ' + today)
+    st.write('Found a stream listing file for ' + today)
+else:
+    st.write('No cache file available, searching for streams...')
 
 try:
     st.write( get_json_output(['nhl']))

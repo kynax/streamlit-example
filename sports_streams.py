@@ -41,7 +41,7 @@ def get_hrefs(sports = None):
         sports = ['nhl','nfl','nba','soccer', 'mlb']
 
     hrefs = []
-    for s in ['nhl','nfl','nba','soccer', 'mlb']:
+    for s in sports:
         print(f'**** League {s} ****')
         for game in get_games(s):
             links = get_streams(game)
