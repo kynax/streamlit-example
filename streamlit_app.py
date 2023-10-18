@@ -19,8 +19,8 @@ try:
         with open(today_file, 'r') as f:
             dd = json.load(f)
     
-        st.write('Found a stream listing file for ' + str(today))
-        st.write('Data was gathered on ' + dd['fileinfo']['date'])
+        #st.write('Found a stream listing file for ' + str(today))
+        st.write('Streams data was gathered on ' + dd['fileinfo']['date'])
         
         if st.button('Delete cache file and reload'):
             os.remove(today_file)
