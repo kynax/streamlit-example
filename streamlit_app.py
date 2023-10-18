@@ -24,7 +24,7 @@ try:
         st.write('No cache file available, searching for streams...')
 
         try:
-            dd =  get_json_output(['nhl'])
+            dd = json.loads( get_json_output(['nhl']))
             with open(today_file, 'w') as f:
                 json.dump(dd, f)
         except Exception as ex:
