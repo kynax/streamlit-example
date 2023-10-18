@@ -24,6 +24,8 @@ try:
 
         with open(today_file, 'r') as f:
             dd = json.load(f)
+
+        pretty_print_json(dd)
     else:
         #st.write('No cache file available, searching for streams...')
 
@@ -32,10 +34,9 @@ try:
                 dd = json.loads( get_json_output())   #['nhl']))
                 with open(today_file, 'w') as f:
                     json.dump(dd, f)
+                st.rerun()
         except Exception as ex:
             st.write( str(ex))
-
-    pretty_print_json(dd)
 except Exception as ex:
     st.write( str(ex))
 
