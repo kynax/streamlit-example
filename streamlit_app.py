@@ -17,7 +17,7 @@ try:
     today = date.today()
     today_file = today.strftime("%Y-%m-%d")
     if os.path.isfile(today_file):
-        st.write('Found a stream listing file for ' + today)
+        st.write('Found a stream listing file for ' + str(today))
         with open(today_file, 'r') as f:
             dd = json.load(f)
     else:
