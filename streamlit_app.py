@@ -15,7 +15,7 @@ def pretty_print_json(json_data):
 
 try:
     today = date.today()
-    today_file = today.strftime("%Y-%m-%d")
+    today_file = today.strftime("%Y-%m-%d") + '.json'
     if os.path.isfile(today_file):
         st.write('Found a stream listing file for ' + str(today))
         with open(today_file, 'r') as f:
