@@ -55,9 +55,14 @@ def get_json_output(sports = None):
     import json
     hrefs = get_hrefs(sports)
 
-    dd = []
+    dd = {}
     for h in hrefs:
-        dd.append({'sport': h[0], 'game': h[1], 'stream': h[2]})
+        s, g, u = h[0], h[1], h[2]
+        if s not in dd.keys():
+            dd[s] = {}
+        if g not in dd[s].keys():
+            dd[s][g] = []
+        dd[s][g].append(u)
 
     return json.dumps(dd)
 
