@@ -1,5 +1,5 @@
 import requests
-from datetime import date
+from datetime import datetime
 from bs4 import BeautifulSoup
 
 def get_games(sport):
@@ -56,7 +56,7 @@ def get_json_output(sports = None):
     import json
     hrefs = get_hrefs(sports)
 
-    dd = {'fileinfo': {'date': str(date.now())},
+    dd = {'fileinfo': {'date': str(datetime.now())},
           'streams': {} }
     for h in hrefs:
         s, g, u = h[0], h[1], h[2]
