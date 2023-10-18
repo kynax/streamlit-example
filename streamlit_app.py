@@ -30,14 +30,12 @@ try:
     else:
         #st.write('No cache file available, searching for streams...')
 
-        try:
-            with st.spinner('Looking for streams...'):
-                dd = json.loads( get_json_output())   #['nhl']))
-                with open(today_file, 'w') as f:
-                    json.dump(dd, f)
-                st.rerun()
-        except Exception as ex:
-            st.write( str(ex))
+        with st.spinner('Looking for streams...'):
+            dd = json.loads( get_json_output())   #['nhl']))
+            with open(today_file, 'w') as f:
+                json.dump(dd, f)
+            st.rerun()
+
 except Exception as ex:
     st.write( str(ex))
     if st.button('Delete cache file and reload'):
