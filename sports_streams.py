@@ -1,4 +1,5 @@
 import requests
+import pytz
 from datetime import datetime, timezone
 from bs4 import BeautifulSoup
 
@@ -57,7 +58,7 @@ def get_json_output(sports = None):
     hrefs = get_hrefs(sports)
 
     utc_dt = datetime.now(timezone.utc)
-    timestamp = str(utc_dt.astimezone().isoformat())
+    timestamp = str(utc_dt.astimezone(pytz.timezone("US/Eastern")).isoformat())
     dd = {'fileinfo': {'date': timestamp},
           'streams': {} }
     for h in hrefs:
