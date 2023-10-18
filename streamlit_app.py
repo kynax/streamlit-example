@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 
 from datetime import date
-import os.path
+import os
 import json
 from sports_streams import get_json_output
 
@@ -18,6 +18,11 @@ try:
     today_file = today.strftime("%Y-%m-%d") + '.json'
     if os.path.isfile(today_file):
         st.write('Found a stream listing file for ' + str(today))
+        
+        if st.button('Delete cache file and reload'):
+            os.remove(today_file)
+            st.rerun()
+
         with open(today_file, 'r') as f:
             dd = json.load(f)
     else:
