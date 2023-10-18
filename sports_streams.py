@@ -62,9 +62,9 @@ def get_json_output(sports = None):
         s, g, u = h[0], h[1], h[2]
         if s not in dd['streams'].keys():
             dd['streams'][s] = {}
-        if g not in dd['streams'][s].keys():
-            dd['streams'][s][g] = []
-        dd['streams'][s][g].append(u)
+        #if g not in dd['streams'][s].keys():
+        #    dd['streams'][s][g] = []
+        dd['streams'][s][g] = u #.append(u)
 
     return json.dumps(dd)
 
