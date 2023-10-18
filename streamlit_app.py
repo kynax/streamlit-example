@@ -16,16 +16,17 @@ try:
     today = date.today()
     today_file = today.strftime("%Y-%m-%d") + '.json'
     if os.path.isfile(today_file):
+        with open(today_file, 'r') as f:
+            dd = json.load(f)
+    
         st.write('Found a stream listing file for ' + str(today))
+        st.write('Data was gathered on ' + dd['fileinfo']['date'])
         
         if st.button('Delete cache file and reload'):
             os.remove(today_file)
             st.rerun()
 
-        with open(today_file, 'r') as f:
-            dd = json.load(f)
-
-        pretty_print_json(dd)
+        pretty_print_json(dd['streams'])
     else:
         #st.write('No cache file available, searching for streams...')
 
@@ -39,6 +40,9 @@ try:
             st.write( str(ex))
 except Exception as ex:
     st.write( str(ex))
+    if st.button('Delete cache file and reload'):
+        os.remove(today_file)
+        st.rerun()
 
 if False:
     with st.echo(code_location='below'):

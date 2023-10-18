@@ -1,4 +1,5 @@
 import requests
+from datetime import date
 from bs4 import BeautifulSoup
 
 def get_games(sport):
@@ -55,14 +56,15 @@ def get_json_output(sports = None):
     import json
     hrefs = get_hrefs(sports)
 
-    dd = {}
+    dd = {'fileinfo': {'date': str(date.today())},
+          'streams': {} }
     for h in hrefs:
         s, g, u = h[0], h[1], h[2]
-        if s not in dd.keys():
-            dd[s] = {}
-        if g not in dd[s].keys():
-            dd[s][g] = []
-        dd[s][g].append(u)
+        if s not in dd['streams'].keys():
+            dd['streams'][s] = {}
+        if g not in dd['streams'][s].keys():
+            dd['streams'][s][g] = []
+        dd['streams'][s][g].append(u)
 
     return json.dumps(dd)
 
