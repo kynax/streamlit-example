@@ -10,7 +10,7 @@ import json
 from sports_streams import get_json_output
 
 def pretty_print_json(json_data):
-    st.write(d)
+    st.write(json_data)
 
 try:
     today = date.today()
