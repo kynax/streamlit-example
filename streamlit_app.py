@@ -6,20 +6,33 @@ import streamlit as st
 
 from datetime import date
 import os.path
+import json
 from sports_streams import get_json_output
 
-today = date.today()
-today_file = today.strftime("%Y-%m-%d")
-if os.path.isfile(today_file):
-    st.write('Found a stream listing file for ' + today)
-else:
-    st.write('No cache file available, searching for streams...')
+def pretty_print_json(json_data):
+    for d in json_data:
+        st.write(d)
 
 try:
-    st.write( get_json_output(['nhl']))
+    today = date.today()
+    today_file = today.strftime("%Y-%m-%d")
+    if os.path.isfile(today_file):
+        st.write('Found a stream listing file for ' + today)
+        with open(today_file, 'r') as f:
+            dd = json.load(f)
+    else:
+        st.write('No cache file available, searching for streams...')
+
+        try:
+            dd =  get_json_output(['nhl'])
+            with open(today_file, 'w') as f:
+                json.dump(dd, f)
+        except Exception as ex:
+            st.write( str(ex))
+
+    pretty_print_json(dd)
 except Exception as ex:
     st.write( str(ex))
-
 
 if False:
     with st.echo(code_location='below'):
