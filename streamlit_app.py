@@ -25,12 +25,13 @@ try:
         with open(today_file, 'r') as f:
             dd = json.load(f)
     else:
-        st.write('No cache file available, searching for streams...')
+        #st.write('No cache file available, searching for streams...')
 
         try:
-            dd = json.loads( get_json_output(['nhl']))
-            with open(today_file, 'w') as f:
-                json.dump(dd, f)
+            with st.spinner('Looking for streams...'):
+                dd = json.loads( get_json_output())   #['nhl']))
+                with open(today_file, 'w') as f:
+                    json.dump(dd, f)
         except Exception as ex:
             st.write( str(ex))
 
