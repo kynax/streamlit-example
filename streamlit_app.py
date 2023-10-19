@@ -8,7 +8,10 @@ import json
 from sports_streams import get_json_output
 
 def pretty_print_json(json_data):
-    st.write(json_data)
+    for sport in json_data:
+        with st.expander(sport):
+            for game in sport:
+                st.write(game)
 
 try:
     today = datetime.now()
