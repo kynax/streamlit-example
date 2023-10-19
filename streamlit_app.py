@@ -1,7 +1,7 @@
 import streamlit as st
 st.set_page_config(layout="wide")
 
-from datetime import date, timezone
+from datetime import datetime, timezone
 import pytz
 import os
 import json
@@ -11,7 +11,7 @@ def pretty_print_json(json_data):
     st.write(json_data)
 
 try:
-    today = date.today()
+    today = datetime.now()
     today = today.astimezone(pytz.timezone("US/Eastern"))
     today_file = today.strftime("%Y-%m-%d") + '.json'
     if os.path.isfile(today_file):
