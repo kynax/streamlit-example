@@ -10,15 +10,14 @@ from sports_streams import get_json_output
 def pretty_print_json(json_data):
     for sport in json_data:
         with st.expander(sport.upper()):
-            st.table(json_data[sport])
-            #for game in json_data[sport]:
-            #    st.write(game)
-            #    i = 1
-            #    for url in json_data[sport][game]:
-            #        st.link_button(f"Stream {i}", url)
-            #        i += 1
-            #    if i == 1:
-            #        st.write('No stream available yet.')
+            for game in json_data[sport]:
+                st.write('> ' + game)
+                i = 1
+                for url in json_data[sport][game]:
+                    st.link_button(f"Stream {i}", url)
+                    i += 1
+                if i == 1:
+                    st.write('No stream available yet.')
 
 try:
     today = datetime.now()
