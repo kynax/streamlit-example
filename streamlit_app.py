@@ -11,7 +11,7 @@ def pretty_print_json(json_data):
     st.write(json_data)
 
 try:
-    today = date.today(timezone.utc)
+    today = date.today()
     today = today.astimezone(pytz.timezone("US/Eastern"))
     today_file = today.strftime("%Y-%m-%d") + '.json'
     if os.path.isfile(today_file):
