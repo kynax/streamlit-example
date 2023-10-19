@@ -11,12 +11,16 @@ def pretty_print_json(json_data):
     for sport in json_data:
         with st.expander(sport.upper()):
             for game in json_data[sport]:
-                st.write('> ' + game)
-                i = 1
-                for url in json_data[sport][game]:
-                    st.link_button(f"Stream {i}", url)
-                    i += 1
-                if i == 1:
+                st.write('**' + game + '**')
+                if len(json_data[sport][game]) > 0:
+                    cols = st.columns(len(json_data[sport][game]))
+                    i = 0
+                    for url in json_data[sport][game]:
+                        with cols[i]:
+                            st.link_button(f"Stream {i+1}", url)
+                            i += 1
+
+                else:
                     st.write('No stream available yet.')
 
 try:
