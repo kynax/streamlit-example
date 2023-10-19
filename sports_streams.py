@@ -58,7 +58,7 @@ def get_json_output(sports = None):
     hrefs = get_hrefs(sports)
 
     utc_dt = datetime.now(timezone.utc)
-    timestamp = str(utc_dt.astimezone(pytz.timezone("US/Eastern")).isoformat())
+    timestamp = str(utc_dt.astimezone(pytz.timezone("US/Eastern")).isoformat(sep=' ', timespec='minutes'))
     dd = {'fileinfo': {'date': timestamp},
           'streams': {} }
     for h in hrefs:
